@@ -17,9 +17,12 @@ end
 function AI:update(dt)
     self:checkBound()
     self:move(dt)
-    self.timer = self.timer + dt
+    --[[self.timer = self.timer + dt
     if self.timer > self.rate then
         self.timer = 0
+        self:target()
+    end]]
+    if Ball.x > love.graphics.getWidth() /2 then
         self:target()
     end
 end
@@ -31,6 +34,7 @@ end
 
 
 function AI:target()
+
     if Ball.y + Ball.height < self.y then
         self.yVel = -self.speed
     elseif Ball.y > self.y + self.height then
